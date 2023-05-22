@@ -9,7 +9,8 @@ from analysis_tools import *
 
 
 img_info = input("Enter the image path: \n")
-img_path = "raw_images/" + img_info
+#img_path = "raw_images/" + img_info
+img_path = img_info
 
 
 # split the information
@@ -30,6 +31,8 @@ points = get_seed_points(img_path, 6)
 mask = np.zeros_like(image[:,:,0])
 cv2.fillPoly(mask, [points], (255, 255, 255))
 cv2.imwrite("./created_masks/poly_mask.jpg", mask)
+
+points
 
 eye = Eye(img_path, mask_fn="./created_masks/poly_mask.jpg", 
           pixel_size=pixel_size)
@@ -74,3 +77,5 @@ with open('results/output.csv', mode='a', newline='') as file:
     # Write the data rows to the CSV file
     for row in rows:
         writer.writerow(row)
+
+

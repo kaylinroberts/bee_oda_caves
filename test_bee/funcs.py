@@ -15,14 +15,14 @@ def get_seed_points(image_path, num_seeds):
         if event == cv2.EVENT_LBUTTONUP:
             seed_points.append([x, y])
             cv2.circle(img_side, (x, y), 3, (0, 255, 0), -1)
-            cv2.namedWindow("Image", cv2.WINDOW_NORMAL)
             cv2.imshow("Image", img_side)
     
     # Load the image
     img = cv2.imread(image_path)
     img_side = img.copy()
-    cv2.namedWindow("Image", cv2.WINDOW_NORMAL)
-    cv2.imshow("Image", img_side)
+    #display image
+    #cv2.imshow("Image", img_side)
+    #cv2.waitKey(0)
     
     # Set the callback function for the window
     cv2.setMouseCallback("Image", on_mouse)
@@ -31,6 +31,10 @@ def get_seed_points(image_path, num_seeds):
     while True:
         key = cv2.waitKey(1) & 0xFF
         if key == ord("q") or len(seed_points) >= num_seeds:
+            #exit out of photo
+            #cv2.destroyAllWindows()
+            #for i in range(2):
+                #cv2.waitKey(1)
             break
     
     # Convert the list of seed points to a numpy array
@@ -45,7 +49,6 @@ def get_seed_points(image_path, num_seeds):
 def crop_scale(image_path):
     img_side = cv2.imread(image_path)
 
-    cv2.namedWindow("Image", cv2.WINDOW_NORMAL)
     cv2.imshow("Image", img_side)
 
     # Initialize an empty list to store the seed points
